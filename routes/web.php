@@ -23,15 +23,21 @@ Route::match(["GET", "POST"], "/register", function(){
     return redirect("/login");
 })->name("register");
 
+// ========== MANAGE USER ROUTE ============
 Route::resource("users", "UserController");
 
+// ========== MANAGE CATEGORY ROUTE ============
 Route::get('/categories/trash', 'CategoryController@trash')->name('categories.trash');
 Route::get('/categories/{id}/restore', 'CategoryController@restore')->name('categories.restore');
 Route::delete('/categories/{category}/delete-permanent', 'CategoryController@deletePermanent')->name('categories.delete-permanent');
 Route::resource('categories', 'CategoryController');
 
+// ========== MANAGE BOOKS ROUTE ============
 Route::get('/books/trash', 'BookController@trash')->name('books.trash');
 Route::post('/books/{book}/restore', 'BookController@restore')->name('books.restore');
 Route::delete('/books/{id}/delete-permanent', 'BookController@deletePermanent')->name('books.delete-permanent');
 Route::get('/ajax/categories/search', 'CategoryController@ajaxSearch');
 Route::resource('books', 'BookController');
+
+// ========== MANAGE ORDERS ROUTE ============
+Route::resource('orders', 'OrderController');
